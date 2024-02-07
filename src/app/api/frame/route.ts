@@ -32,11 +32,13 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
     const { following, liked, interactor } = message;
 
     if (following || liked) {
+
       if (message?.button === 1 && interactor?.fid) {
         await followUser(interactor.fid);
         return generateSuccessResponse('I followed you back!');
       }
     } else {
+      console.error(message)
       return generateErrorResponse('Please follow me first and click again', 'post', '/text-3.png');
     }
   } catch (error) {
