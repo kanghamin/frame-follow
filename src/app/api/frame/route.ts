@@ -2,7 +2,7 @@ import { FrameRequest, getFrameMessage, getFrameHtmlResponse } from '@coinbase/o
 import { NextRequest, NextResponse } from 'next/server';
 import { NeynarAPIClient } from '@standard-crypto/farcaster-js-neynar';
 
-const NEXT_PUBLIC_URL = process.env.NEXT_PUBLIC_URL || 'https://localhost:3000';
+const publicUrl = 'https://frame-follow-back.vercel.app'
 const apiKey = process.env.NEXT_NEYNAR_API_KEY;
 const signerUuid = process.env.NEXT_APPROVED_UUID;
 
@@ -50,8 +50,8 @@ function generateSuccessResponse(label: string): NextResponse {
   return new NextResponse(
     getFrameHtmlResponse({
       buttons: [{ label }],
-      image: `${NEXT_PUBLIC_URL}/text-2.png`,
-      post_url: `${NEXT_PUBLIC_URL}/api/frame`,
+      image: `${publicUrl}/text-2.png`,
+      post_url: `${publicUrl}/api/frame`,
     })
   );
 }
@@ -65,8 +65,8 @@ function generateErrorResponse(label: string, action: 'post' | 'post_redirect' |
           action,
         },
       ],
-      image: `${NEXT_PUBLIC_URL}${imagePath}`,
-      post_url: `${NEXT_PUBLIC_URL}/api/frame`,
+      image: `${publicUrl}${imagePath}`,
+      post_url: `${publicUrl}/api/frame`,
     })
   );
 }

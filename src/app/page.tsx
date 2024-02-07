@@ -1,6 +1,8 @@
 import { getFrameMetadata } from '@coinbase/onchainkit';
 import type { Metadata } from 'next';
 
+const publicUrl = 'https://frame-follow-back.vercel.app'
+
 const frameMetadata = getFrameMetadata({
   buttons: [
     {
@@ -8,17 +10,18 @@ const frameMetadata = getFrameMetadata({
       action: 'post',
     },
   ],
-  image: `${process.env.NEXT_PUBLIC_URL}/text-1.png`,
-  post_url: `${process.env.NEXT_PUBLIC_URL}/api/frame`,
+  image: `${publicUrl}/text-1.png`,
+  post_url: `${publicUrl}/api/frame`,
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(publicUrl),
   title: 'Follow Me Back Frame',
   description: 'FMBF',
   openGraph: {
     title: 'Follow Me Back Frame',
     description: 'FMBF',
-    images: [`${process.env.NEXT_PUBLIC_URL}/text-1.png`],
+    images: [`${publicUrl}/text-1.png`],
   },
   other: {
     ...frameMetadata,
